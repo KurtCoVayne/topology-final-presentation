@@ -1,0 +1,42 @@
+% ============================================================
+\section{Conclusión: el Teorema 4.2 completo}
+% ============================================================
+
+\begin{frame}{Teorema 4.2 — Resumen de la demostración}
+  \begin{block}{Teorema 4.2}
+    $\pione(X,\xo)$ es un \textbf{grupo} bajo la operación
+    $\clase{\alpha}\circ\clase{\beta}=\clase{\alpha*\beta}$.
+  \end{block}
+
+  \bigskip
+  \begin{columns}[T]
+    \begin{column}{0.30\textwidth}
+      \centering
+      \textcolor{verdeTeal}{\textbf{Lema A}}\\[4pt]
+      \textit{Identidad}\\[6pt]
+      $\clase{c}\circ\clase{\alpha}=\clase{\alpha}$\\[4pt]
+      Homotopía: zona constante se contrae hacia $t=0$
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \textcolor{morado}{\textbf{Lema B}}\\[4pt]
+      \textit{Inversos}\\[6pt]
+      $\clase{\alpha}\circ\clase{\abar}=\clase{c}$\\[4pt]
+      Homotopía: avanza hasta $\alpha(s)$ y regresa
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \textcolor{coralOscuro}{\textbf{Lema C}}\\[4pt]
+      \textit{Asociatividad}\\[6pt]
+      $([\alpha]\circ[\beta])\circ[\gamma]$\\$=[\alpha]\circ([\beta]\circ[\gamma])$\\[4pt]
+      Homotopía: desliza los puntos de corte
+    \end{column}
+  \end{columns}
+
+  \bigskip
+  \begin{center}
+    \textbf{Técnica unificadora:} construir homotopías a partir de diagramas
+    geométricos en el cuadrado $\IxI$, garantizando continuidad mediante el
+    Lema de Continuidad.
+  \end{center}
+\end{frame}

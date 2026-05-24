@@ -1,0 +1,57 @@
+% ============================================================
+\section{Contexto: el grupo fundamental}
+% ============================================================
+
+\begin{frame}{¿Qué estamos construyendo?}
+  \begin{block}{Definición — $\pi_1(X,\xo)$}
+    El \textbf{grupo fundamental} de $X$ en $\xo$ es el conjunto de clases de
+    homotopía de lazos con base $\xo$, con la operación
+    \[
+      \clase{\alpha} \circ \clase{\beta} \;=\; \clase{\alpha * \beta}
+    \]
+    donde $(\alpha * \beta)(t) =
+      \begin{cases} \alpha(2t) & 0 \le t \le \tfrac{1}{2}\\
+                    \beta(2t-1) & \tfrac{1}{2} \le t \le 1 \end{cases}$
+  \end{block}
+
+  \bigskip
+  \textbf{Teorema 4.2:} $\pione(X,\xo)$ es un \emph{grupo} bajo $\circ$.
+  \medskip
+
+  \begin{columns}[T]
+    \begin{column}{0.3\textwidth}
+      \centering
+      \textcolor{verdeTeal}{\textbf{Lema A}}\\\smallskip
+      Identidad $\clase{c}$\\\smallskip
+      {\footnotesize (ya demostrado)}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \centering
+      \textcolor{morado}{\textbf{Lema B}}\\\smallskip
+      Inversos $\clase{\abar}$\\\smallskip
+      {\footnotesize \textbf{← hoy}}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \centering
+      \textcolor{coralOscuro}{\textbf{Lema C}}\\\smallskip
+      Asociatividad\\\smallskip
+      {\footnotesize \textbf{← hoy}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Herramienta clave: Lema de Continuidad}
+  \begin{alertblock}{Lema de Continuidad}
+    Sea $X = A \cup B$ con $A, B$ cerrados. Si $f:A \to Y$ y $g:B \to Y$ son
+    continuas con $f(x)=g(x)$ para todo $x \in A \cap B$, entonces
+    \[
+      h(x) = \begin{cases} f(x) & x \in A \\ g(x) & x \in B \end{cases}
+    \]
+    es continua.
+  \end{alertblock}
+
+  \bigskip
+  \textbf{Uso práctico en este capítulo:} todas las homotopías se definen por
+  tramos sobre el cuadrado $\IxI$.  El Lema garantiza la continuidad cuando
+  las dos piezas coinciden en la frontera común.
+\end{frame}

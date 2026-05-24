@@ -1,0 +1,28 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.nav
+*.snm
+*.toc
+*.out
+*.vrb
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# biblatex / biber
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+
+# minted
+_minted*/
+*.data.minted
+
+# compiled output
+main.pdf
+
+# editor / tooling local settings
+.claude/settings.local.json
+.DS_Store

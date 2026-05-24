@@ -1,0 +1,89 @@
+% ============================================================
+%  Preámbulo — plantilla main-udea (tema default + azul)
+%  adaptada al contenido de los Lemas B y C (grupo fundamental)
+% ============================================================
+
+% ---------- Idioma y codificación ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+% ---------- Matemáticas ----------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}   % \varnothing
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% ---------- Tablas, gráficos y utilidades ----------
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{ragged2e}   % \justifying
+\usepackage{hyperref}
+\usepackage{minted}
+
+% ---------- TikZ ----------
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, decorations.pathreplacing, patterns, calc, positioning}
+
+% ---------- Bibliografía ----------
+\usepackage[backend=biber, style=numeric]{biblatex}
+\addbibresource{references.bib}
+
+% ============================================================
+%  Tema y colores (plantilla main-udea)
+% ============================================================
+\usetheme{default}                                   % tema simple y limpio
+\setbeamercolor{frametitle}{fg=blue}                 % títulos de slide en azul
+\setbeamercolor{structure}{fg=blue}                  % viñetas, toc, etc.
+\setbeamercolor{title in head/foot}{fg=blue}
+\setbeamercolor{date in head/foot}{fg=black}
+
+% Pie de página con número de slide (plantilla main-udea)
+\setbeamertemplate{navigation symbols}{}
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+% ---------- Paleta de colores ----------
+% Se conservan los NOMBRES usados por las figuras del contenido, pero los dos
+% morados estructurales se re-mapean a los azules de la plantilla; los acentos
+% (verde/coral/ámbar) se mantienen para armonizar con el azul.
+\definecolor{morado}{HTML}{1A73E8}        % antes púrpura -> azul de plantilla
+\definecolor{moradoclaro}{HTML}{CCE5FF}   % azul claro
+\definecolor{verdeTeal}{RGB}{15,110,86}
+\definecolor{verdeClaro}{RGB}{225,245,238}
+\definecolor{coralOscuro}{RGB}{153,60,29}
+\definecolor{ambar}{RGB}{133,79,11}
+\definecolor{grisClaro}{RGB}{245,244,240}
+
+% ---------- Colores de bloques ----------
+\setbeamercolor{block title}{bg=morado, fg=white}
+\setbeamercolor{block body}{bg=grisClaro, fg=black}
+\setbeamercolor{block title alerted}{bg=coralOscuro, fg=white}
+\setbeamercolor{block body alerted}{bg=grisClaro, fg=black}
+\setbeamercolor{block title example}{bg=verdeTeal, fg=white}
+\setbeamercolor{block body example}{bg=verdeClaro, fg=black}
+\setbeamercolor{section in toc}{fg=morado}
+
+% ---------- Comandos matemáticos ----------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\I}{[0,1]}
+\newcommand{\IxI}{I \times I}
+\newcommand{\pione}{\pi_1}
+\newcommand{\xo}{x_0}
+\newcommand{\simxo}{\sim_{\xo}}
+\newcommand{\abar}{\bar{\alpha}}
+\newcommand{\clase}[1]{[#1]}
+
+% ---------- Separadores de sección ----------
+\AtBeginSection[]{%
+  \begin{frame}{Contenido}
+    \tableofcontents[currentsection]
+  \end{frame}%
+}

@@ -1,0 +1,201 @@
+% ============================================================
+\section{Lema C — Asociatividad}
+% ============================================================
+
+\begin{frame}{Lema C — Enunciado y el problema}
+  \begin{block}{Lema C}
+    La multiplicación $\circ$ es asociativa: para cualesquiera
+    $\clase{\alpha}, \clase{\beta}, \clase{\gamma} \in \pione(X,\xo)$,
+    \[
+      \bigl(\clase{\alpha} \circ \clase{\beta}\bigr) \circ \clase{\gamma}
+      \;=\;
+      \clase{\alpha} \circ \bigl(\clase{\beta} \circ \clase{\gamma}\bigr)
+    \]
+  \end{block}
+
+  \bigskip
+  \textbf{El problema central:} ambos lados recorren los \emph{mismos puntos}
+  pero con \emph{distinta repartición de tiempo}:
+
+  \bigskip
+  \begin{center}
+  \begin{tabular}{lccc}
+    \toprule
+    Camino & $\alpha$ usa & $\beta$ usa & $\gamma$ usa \\
+    \midrule
+    $(\alpha*\beta)*\gamma$ &
+      $\bigl[0,\tfrac{1}{4}\bigr]$ &
+      $\bigl[\tfrac{1}{4},\tfrac{1}{2}\bigr]$ &
+      $\bigl[\tfrac{1}{2},1\bigr]$ \\[4pt]
+    $\alpha*(\beta*\gamma)$ &
+      $\bigl[0,\tfrac{1}{2}\bigr]$ &
+      $\bigl[\tfrac{1}{2},\tfrac{3}{4}\bigr]$ &
+      $\bigl[\tfrac{3}{4},1\bigr]$ \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+
+  \bigskip
+  La homotopía debe \textbf{desplazar los puntos de corte} suavemente de
+  $\bigl\{\tfrac{1}{4},\tfrac{1}{2}\bigr\}$ a $\bigl\{\tfrac{1}{2},\tfrac{3}{4}\bigr\}$
+  al ir de $s=0$ a $s=1$.
+\end{frame}
+
+\begin{frame}{Lema C — Fórmulas explícitas de los caminos}
+  Calculando directamente:
+
+  \[
+    \bigl((\alpha*\beta)*\gamma\bigr)(t) =
+    \begin{cases}
+      \alpha(4t)   & 0 \le t \le \tfrac{1}{4} \\[3pt]
+      \beta(4t-1)  & \tfrac{1}{4} \le t \le \tfrac{1}{2} \\[3pt]
+      \gamma(2t-1) & \tfrac{1}{2} \le t \le 1
+    \end{cases}
+  \]
+
+  \bigskip
+
+  \[
+    \bigl(\alpha*(\beta*\gamma)\bigr)(t) =
+    \begin{cases}
+      \alpha(2t)   & 0 \le t \le \tfrac{1}{2} \\[3pt]
+      \beta(4t-2)  & \tfrac{1}{2} \le t \le \tfrac{3}{4} \\[3pt]
+      \gamma(4t-3) & \tfrac{3}{4} \le t \le 1
+    \end{cases}
+  \]
+
+  \bigskip
+  Los puntos de corte son distintos, pero basta con construir una homotopía
+  que los \emph{deslice} continuamente.
+\end{frame}
+
+\begin{frame}{Lema C — Construcción de la homotopía $K$}
+  Los puntos de corte en el nivel $s$ son $\dfrac{s+1}{4}$ y $\dfrac{s+2}{4}$:
+
+  \[
+    \boxed{K(t,s) =
+    \begin{cases}
+      \alpha\!\left(\dfrac{4t}{s+1}\right)
+        & 0 \le t \le \dfrac{s+1}{4} \\[10pt]
+      \beta\bigl(4t - 1 - s\bigr)
+        & \dfrac{s+1}{4} \le t \le \dfrac{s+2}{4} \\[10pt]
+      \gamma\!\left(\dfrac{4t - s - 2}{2 - s}\right)
+        & \dfrac{s+2}{4} \le t \le 1
+    \end{cases}}
+  \]
+
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{En $s=0$:} cortes en $\tfrac{1}{4}$ y $\tfrac{1}{2}$
+      \[K(\,\cdot\,,0) = (\alpha*\beta)*\gamma \checkmark\]
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{En $s=1$:} cortes en $\tfrac{1}{2}$ y $\tfrac{3}{4}$
+      \[K(\,\cdot\,,1) = \alpha*(\beta*\gamma) \checkmark\]
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Lema C — Verificación de la homotopía}
+  \textbf{Punto base fijo:}
+  \begin{align*}
+    K(0,s) &= \alpha\!\left(\frac{0}{s+1}\right) = \alpha(0) = \xo \checkmark\\
+    K(1,s) &= \gamma\!\left(\frac{4-s-2}{2-s}\right)
+             = \gamma\!\left(\frac{2-s}{2-s}\right)
+             = \gamma(1) = \xo \checkmark
+  \end{align*}
+
+  \medskip
+  \textbf{Continuidad en $t = \dfrac{s+1}{4}$ (frontera entre $\alpha$ y $\beta$):}
+  \[
+    \text{pieza 1: }\alpha\!\left(\frac{4\cdot\frac{s+1}{4}}{s+1}\right)
+                 = \alpha(1) = \xo
+    \qquad
+    \text{pieza 2: }\beta\!\left(4\cdot\frac{s+1}{4} - 1 - s\right)
+                 = \beta(0) = \xo \checkmark
+  \]
+
+  \medskip
+  \textbf{Continuidad en $t = \dfrac{s+2}{4}$ (frontera entre $\beta$ y $\gamma$):}
+  \[
+    \text{pieza 2: }\beta\!\left(4\cdot\frac{s+2}{4}-1-s\right)
+                 = \beta(1) = \xo
+    \qquad
+    \text{pieza 3: }\gamma\!\left(\frac{4\cdot\frac{s+2}{4}-s-2}{2-s}\right)
+                 = \gamma(0) = \xo \checkmark
+  \]
+
+  Las tres piezas son continuas y coinciden en las fronteras.
+  Por el \textbf{Lema de Continuidad} (aplicado dos veces), $K$ es continua.
+\end{frame}
+
+\begin{frame}{Lema C — Visualización: los puntos de corte se deslizan}
+  \begin{center}
+  \begin{tikzpicture}[scale=3.0]
+    \draw[thick] (0,0) rectangle (1,1);
+
+    % Regiones coloreadas para s=0 (base)
+    \fill[moradoclaro!40] (0,0) rectangle (0.25, 0.01);
+    \fill[verdeTeal!30]   (0.25,0) rectangle (0.5, 0.01);
+    \fill[coralOscuro!20] (0.5,0) rectangle (1, 0.01);
+
+    % Líneas de corte para distintos valores de s
+    % s=0: cortes en 1/4 y 1/2
+    \draw[morado, thick]     (0.25, 0) -- (0.25, 0.01)
+      node[below=2pt]{\tiny $\frac{1}{4}$};
+    \draw[verdeTeal, thick]  (0.5,  0) -- (0.5,  0.01)
+      node[below=2pt]{\tiny $\frac{1}{2}$};
+
+    % Líneas diagonales de los puntos de corte
+    % Corte izq: t=(s+1)/4  -> de (1/4,0) a (1/2,1)
+    \draw[morado, very thick, dashed]
+      (0.25, 0) -- (0.5, 1)
+      node[right]{\small $\dfrac{s+1}{4}$};
+
+    % Corte der: t=(s+2)/4  -> de (1/2,0) a (3/4,1)
+    \draw[verdeTeal, very thick, dashed]
+      (0.5, 0) -- (0.75, 1)
+      node[right]{\small $\dfrac{s+2}{4}$};
+
+    % Regiones
+    \node[morado]     at (0.13, 0.5) {\small $\alpha$};
+    \node[verdeTeal]  at (0.48, 0.5) {\small $\beta$};
+    \node[coralOscuro] at (0.83, 0.5) {\small $\gamma$};
+
+    % Etiquetas ejes
+    \node[below] at (0,-0.07) {\small $0$};
+    \node[below] at (1,-0.07) {\small $1$};
+    \node[left]  at (-0.04,0) {\small $s=0$};
+    \node[left]  at (-0.04,1) {\small $s=1$};
+
+    % Cortes en s=1
+    \draw[morado!50]    (0.5, 1) -- (0.5,1.01)
+      node[above]{\tiny $\frac{1}{2}$};
+    \draw[verdeTeal!50] (0.75,1) -- (0.75,1.01)
+      node[above]{\tiny $\frac{3}{4}$};
+
+    % Flecha s
+    \draw[-Stealth, thick] (-0.08, 0) -- (-0.08, 1)
+      node[midway, left]{\small $s$};
+  \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Lema C — Conclusión}
+  \begin{block}{Resultado}
+    $K$ es una homotopía módulo $\xo$ entre $(\alpha*\beta)*\gamma$ y
+    $\alpha*(\beta*\gamma)$, luego:
+    \[
+      \bigl[\,(\alpha*\beta)*\gamma\,\bigr]
+      \;=\;
+      \bigl[\,\alpha*(\beta*\gamma)\,\bigr]
+    \]
+    y por tanto la operación $\circ$ es \textbf{asociativa}. \hfill $\square$
+  \end{block}
+
+  \bigskip
+  \textbf{Observación técnica importante:}
+  Nótese que $2-s \neq 0$ para $s \in \I$, por lo que $\gamma\!\left(\frac{4t-s-2}{2-s}\right)$
+  está bien definida en toda la tercera pieza.  De manera análoga,
+  $s+1 \neq 0$ para todo $s \in \I$.
+\end{frame}

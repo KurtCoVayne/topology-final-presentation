@@ -1,0 +1,200 @@
+% ============================================================
+\section{Lema B — Existencia de inversos}
+% ============================================================
+
+\begin{frame}{Lema B — Enunciado}
+  \begin{block}{Lema B}
+    Para cada clase $\clase{\alpha} \in \pione(X,\xo)$, el inverso con respecto
+    a $\circ$ y al elemento identidad $\clase{c}$ es la clase $\clase{\abar}$,
+    donde
+    \[
+      \abar(t) = \alpha(1-t), \quad t \in \I.
+    \]
+  \end{block}
+
+  \bigskip
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{¿Qué es $\abar$?}
+      \begin{itemize}
+        \item El \emph{reverso} de $\alpha$: recorre la misma
+              ruta pero en dirección contraria.
+        \item $\abar(0) = \alpha(1) = \xo$ \quad $\checkmark$
+        \item $\abar(1) = \alpha(0) = \xo$ \quad $\checkmark$
+        \item Es un lazo con base $\xo$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Meta de la demostración:}
+      \[
+        \clase{\alpha} \circ \clase{\abar} = \clase{c}
+      \]
+      \[
+        \clase{\abar} \circ \clase{\alpha} = \clase{c}
+      \]
+      Es decir: $\alpha * \abar \simxo c$ \;y\; $\abar * \alpha \simxo c$.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Lema B — El lazo $\alpha * \abar$}
+  El producto $\alpha * \abar$ recorre $\alpha$ al doble de velocidad y luego
+  la deshace:
+
+  \[
+    (\alpha * \abar)(t) =
+    \begin{cases}
+      \alpha(2t)       & 0 \le t \le \tfrac{1}{2} \\[4pt]
+      \alpha(2 - 2t)   & \tfrac{1}{2} \le t \le 1
+    \end{cases}
+  \]
+
+  \bigskip
+  \begin{center}
+  \begin{tikzpicture}[scale=1.0]
+    % Línea de tiempo
+    \draw[thick, -Stealth] (-0.2,0) -- (7.2,0) node[right]{\small $t$};
+    % Bloque alpha
+    \fill[moradoclaro!60] (0,0.15) rectangle (3.5,0.55);
+    \node at (1.75, 0.35) {\small $\alpha$ (ida)};
+    % Bloque alpha-bar
+    \fill[verdeTeal!20] (3.5,0.15) rectangle (7,0.55);
+    \node at (5.25, 0.35) {\small $\abar$ (vuelta)};
+    % Marcas
+    \foreach \x/\lab in {0/{$0$}, 3.5/{$\tfrac{1}{2}$}, 7/{$1$}}{
+      \draw (\x, -0.12) -- (\x, 0.12);
+      \node[below] at (\x, -0.12) {\small \lab};
+    }
+    % Puntos base
+    \fill[ambar] (0,0) circle (3pt) node[below=6pt]{\tiny $\xo$};
+    \fill[ambar] (3.5,0) circle (3pt);
+    \fill[ambar] (7,0) circle (3pt) node[below=6pt]{\tiny $\xo$};
+    \node[above=6pt, ambar] at (3.5, 0.55) {\tiny $\alpha(1)=\xo$};
+  \end{tikzpicture}
+  \end{center}
+
+  \bigskip
+  El camino sale de $\xo$, llega a $\xo$ y regresa inmediatamente.
+  Intuitivamente \emph{debería} ser homotópico al lazo constante \ldots\
+  pero hay que demostrarlo con una homotopía explícita.
+\end{frame}
+
+\begin{frame}{Lema B — Construcción de la homotopía $K$}
+  \textbf{Idea:} El nivel $K(\,\cdot\,,s)$ avanza por $\alpha$ \emph{solo hasta}
+  $\alpha(s)$ y regresa.  Al aumentar $s$ se "explora" más del camino.
+
+  \[
+    \boxed{K(t,s) =
+    \begin{cases}
+      \alpha(2ts)       & 0 \le t \le \tfrac{1}{2} \\[4pt]
+      \alpha(2s - 2ts)  & \tfrac{1}{2} \le t \le 1
+    \end{cases}}
+  \]
+
+  \bigskip
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \textbf{Verificación de los niveles:}
+      \begin{align*}
+        K(\,\cdot\,,0) &= \alpha(0) = \xo = c(\,\cdot\,) \\
+        K(\,\cdot\,,1) &= \alpha * \abar(\,\cdot\,)
+      \end{align*}
+      \textbf{Punto base fijo:}
+      \begin{align*}
+        K(0,s) &= \alpha(0) = \xo \\
+        K(1,s) &= \alpha(2s-2s) = \alpha(0) = \xo
+      \end{align*}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \textbf{Continuidad en $t=\tfrac{1}{2}$:}
+      \begin{align*}
+        \text{pieza 1: } &\alpha(2\cdot\tfrac{1}{2}\cdot s) = \alpha(s)\\
+        \text{pieza 2: } &\alpha(2s - 2\cdot\tfrac{1}{2}\cdot s) = \alpha(s)
+      \end{align*}
+      Coinciden $\Rightarrow$ Lema de Continuidad con
+      $A=[0,\tfrac{1}{2}]\times I$,
+      $B=[\tfrac{1}{2},1]\times I$. \checkmark
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Lema B — Visualización geométrica en $\IxI$}
+  \begin{center}
+  \begin{tikzpicture}[scale=2.2]
+    % Cuadrado unitario
+    \draw[thick] (0,0) rectangle (1,1);
+
+    % Región izquierda (subida por alpha)
+    \fill[moradoclaro!50] (0,0) -- (0.5,1) -- (0,1) -- cycle;
+    % Región derecha (bajada por alpha-bar)
+    \fill[verdeTeal!25] (0.5,1) -- (1,1) -- (1,0) -- (0,0) -- cycle;
+
+    % Diagonal L: t = s/2  (frontera entre las dos piezas al nivel s)
+    % En realidad la frontera es t=1/2 para todo s, pero la "exploración"
+    % está dada por la diagonal del cuadrado.
+    % Dibujamos la evolución del nivel s
+    \foreach \s/\col in {0.25/moradoclaro, 0.5/morado, 0.75/verdeTeal}{
+      \draw[\col, thick, dashed]
+        (0,\s) -- (0.5*\s, \s)
+        -- ({0.5*\s+0.5*(1-\s)}, \s);
+    }
+
+    % Línea divisoria t=1/2
+    \draw[ambar, very thick] (0.5,0) -- (0.5,1);
+    \node[ambar, below] at (0.5,-0.05) {\small $t=\tfrac{1}{2}$};
+
+    % Labels en el cuadrado
+    \node[morado] at (0.17, 0.65) {\small $\alpha(2ts)$};
+    \node[verdeTeal] at (0.78, 0.4) {\small $\alpha(2s{-}2ts)$};
+
+    % Etiquetas bordes
+    \node[below] at (0,-0.05) {\small $0$};
+    \node[below] at (1,-0.05) {\small $1$};
+    \node[left]  at (-0.05,0) {\small $0$};
+    \node[left]  at (-0.05,1) {\small $1$};
+    \node[below] at (0.5,-0.15) {};
+    \node[rotate=90, left] at (-0.15, 0.5) {\small $s$ (deformación)};
+    \node[below] at (0.5,-0.22) {\small $t$ (parámetro del lazo)};
+
+    % s=0: lazo constante
+    \node[right, coralOscuro] at (1.05, 0) {\small $s=0$: lazo constante $c$};
+    % s=1: alpha * alpha-bar
+    \node[right, coralOscuro] at (1.05, 1) {\small $s=1$: $\alpha*\abar$};
+
+    % Puntos base en los bordes verticales
+    \fill[ambar] (0,0) circle (1.2pt);
+    \fill[ambar] (0,1) circle (1.2pt);
+    \fill[ambar] (1,0) circle (1.2pt);
+    \fill[ambar] (1,1) circle (1.2pt);
+    \node[left, ambar] at (0,0.5) {\tiny $\xo$};
+    \node[right, ambar] at (1,0.5) {\tiny $\xo$};
+  \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Lema B — Conclusión e inverso bilateral}
+  Hemos probado que $K$ es una homotopía módulo $\xo$ entre $c$ y
+  $\alpha * \abar$, es decir:
+  \[
+    \clase{\alpha} \circ \clase{\abar} = \clase{\alpha * \abar} = \clase{c}
+  \]
+
+  \bigskip
+  \textbf{¿Y el inverso por la izquierda?}
+
+  Observamos que el reverso del reverso es el mismo camino:
+  \[
+    \overline{(\abar)}(t) = \abar(1-t) = \alpha(1-(1-t)) = \alpha(t)
+  \]
+  Entonces, aplicando el mismo argumento con $\abar$ en lugar de $\alpha$:
+  \[
+    \clase{\abar} \circ \clase{\alpha}
+    = \clase{\abar} \circ \clase{\,\overline{(\abar)}\,}
+    = \clase{c}
+  \]
+
+  \begin{block}{Resultado}
+    $\clase{\abar} = \clase{\alpha}^{-1}$ es un \textbf{inverso bilateral} de
+    $\clase{\alpha}$ en $\pione(X,\xo)$. \hfill $\square$
+  \end{block}
+\end{frame}
