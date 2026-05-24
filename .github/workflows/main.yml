@@ -30,7 +30,7 @@ jobs:
           pygmentize -V
 
       - name: Build LaTeX paper
-        working-directory: $GITHUB_WORKSPACE
+        # working-directory: $GITHUB_WORKSPACE
         run: |
           latexmk \
             -pdf \
