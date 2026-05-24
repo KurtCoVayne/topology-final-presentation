@@ -1,0 +1,76 @@
+name: Build and Release Paper PDF
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    container:
+      image: danteev/texlive:latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Fix Git ownership warning inside Docker container
+      - name: Mark repository as safe
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Environment info
+        run: |
+          latexmk --version
+          pdflatex --version
+          pygmentize -V
+
+      - name: Build LaTeX paper
+        working-directory: $GITHUB_WORKSPACE
+        run: |
+          latexmk \
+            -pdf \
+            -shell-escape \
+            -interaction=nonstopmode \
+            -file-line-error \
+            main.tex
+
+      - name: Verify PDF was generated
+        run: |
+          if [ ! -f main.pdf ]; then
+            echo "::error::main.pdf was not generated."
+            exit 1
+          fi
+
+          ls -lh main.pdf
+
+      - name: Compute release metadata
+        id: meta
+        run: |
+          TIMESTAMP=$(date -u +'%Y%m%d-%H%M%S')
+          SHORT_SHA=$(git rev-parse --short HEAD)
+
+          TAG="paper-${TIMESTAMP}-${SHORT_SHA}"
+          TITLE="Paper build ${TIMESTAMP} (${SHORT_SHA})"
+
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "title=${TITLE}" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release and upload PDF
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.meta.outputs.tag }}
+          name: ${{ steps.meta.outputs.title }}
+          body: |
+            Automated build of `main.tex`.
+
+            - Commit: `${{ github.sha }}`
+            - Built (UTC): `${{ steps.meta.outputs.tag }}`
+          files: main.pdf
+          draft: false
+          prerelease: false
+          fail_on_unmatched_files: true
