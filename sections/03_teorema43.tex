@@ -1,0 +1,216 @@
+% ============================================================
+\section{Teorema 4.3 — Independencia del punto base}
+% ============================================================
+
+\begin{frame}{Teorema 4.3}
+
+  \begin{block}{Teorema 4.3}
+    Si $X$ es un espacio arco-conexo y $x_0, x_1 \in X$, entonces
+    \[
+      \pione(X, x_0) \;\cong\; \pione(X, x_1).
+    \]
+  \end{block}
+
+  \bigskip
+  \textbf{Idea central:} cualquier camino $\rho$ de $x_0$ a $x_1$ induce
+  un isomorfismo por \emph{conjugación}:
+  \[
+    [\alpha] \;\longmapsto\; [\bar{\rho} * \alpha * \rho].
+  \]
+
+  \bigskip
+  \begin{itemize}
+    \item El resultado justifica hablar de \emph{el} grupo fundamental
+          $\pione(X)$ de un espacio arco-conexo (como grupo abstracto).
+    \item \textbf{Cuidado:} el isomorfismo \emph{depende} del camino $\rho$
+          elegido; no hay un isomorfismo canónico en general.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Construcción del isomorfismo $P$}
+
+  Sea $\rho : I \to X$ un camino con $\rho(0) = x_0$ y $\rho(1) = x_1$.
+
+  \medskip
+  \begin{block}{Definición de $P$}
+    \[
+      P : \pione(X,x_0) \to \pione(X,x_1),
+      \qquad
+      P([\alpha]) \;=\; [(\bar{\rho} * \alpha) * \rho].
+    \]
+  \end{block}
+
+  \medskip
+  \textbf{$(\bar{\rho} * \alpha) * \rho$ es lazo en $x_1$:}
+  \begin{itemize}
+    \item $\bar{\rho}$ va de $x_1$ a $x_0$; $\alpha$ es lazo en $x_0$;
+          $\rho$ va de $x_0$ a $x_1$. La concatenación empieza y
+          termina en $x_1$. \hfill $\checkmark$
+  \end{itemize}
+
+  \medskip
+  \textbf{$P$ está bien definida:} si $\alpha \sim_{x_0} \alpha'$
+  mediante una homotopía de lazos $F : I \times I \to X$, entonces
+  \[
+    (\bar{\rho} * F(\cdot, s)) * \rho
+  \]
+  es una homotopía de lazos de $\bar{\rho} * \alpha * \rho$ a
+  $\bar{\rho} * \alpha' * \rho$ en $x_1$. Luego $P([\alpha]) = P([\alpha'])$.
+  \hfill $\checkmark$
+
+\end{frame}
+
+\begin{frame}{Ilustración — Conjugación por un camino}
+
+  \begin{center}
+  \begin{tikzpicture}[scale=1.1]
+    % Espacio X
+    \draw[thick, fill=gray!10]
+      plot[smooth cycle, tension=0.65]
+      coordinates {(-3,0) (-2.5,1.8) (-0.5,2.6) (1.8,2.3) (3,0.6)
+                   (2.5,-1.2) (0,-2) (-2,-1.6)};
+
+    % Puntos base
+    \filldraw[blue]      (-1.1,-0.3) circle (2.2pt)
+      node[below left, blue] {$x_0$};
+    \filldraw[verdeTeal] ( 1.3, 0.9) circle (2.2pt)
+      node[above right, verdeTeal] {$x_1$};
+
+    % Camino rho (x0 -> x1)
+    \draw[blue!60!verdeTeal, thick, ->, >=Stealth, shorten >=3pt]
+      (-1.1,-0.3) .. controls (-0.2,0.7) and (0.5,0.5) .. (1.3,0.9)
+      node[midway, above=2pt] {$\rho$};
+
+    % Lazo alpha en x0
+    \draw[coralOscuro, thick, ->, >=Stealth]
+      (-1.1,-0.3)
+        .. controls (-2.3,0.1) and (-2.6,1.2) .. (-1.9,1.7)
+        .. controls (-1.1,2.2) and (-0.3,1.5) .. (-1.1,-0.3);
+    \node[coralOscuro] at (-2.0,1.05) {$\alpha$};
+
+    % Lazo P([alpha]) = rho-bar * alpha * rho en x1
+    \draw[ambar, thick, dashed, ->, >=Stealth]
+      (1.3,0.9)
+        .. controls (0.5,0.5) and (-0.2,0.7) .. (-1.1,-0.3)   % rho-bar
+        .. controls (-2.3,0.1) and (-2.6,1.2) .. (-1.9,1.7)   % alpha
+        .. controls (-1.1,2.2) and (-0.3,1.5) .. (-1.1,-0.3)  % alpha end
+        .. controls (-0.2,0.7) and (0.5,0.5) .. (1.3,0.9);    % rho
+    \node[ambar] at (0.1,-1.1) {\small $\bar{\rho}*\alpha*\rho$};
+
+    \node at (2.6,2.0) {$X$};
+  \end{tikzpicture}
+  \end{center}
+
+  \vspace{-2mm}
+  El lazo $\bar{\rho}*\alpha*\rho$ (amarillo, punteado) recorre $\bar{\rho}$
+  hasta $x_0$, traza el lazo $\alpha$ (rojo), y regresa por $\rho$ a $x_1$.
+
+\end{frame}
+
+\begin{frame}{$P$ es homomorfismo}
+
+  Sean $[\alpha], [\beta] \in \pione(X, x_0)$.
+
+  \begin{exampleblock}{Cálculo}
+    \begin{align*}
+      P\!\left([\alpha]\cdot[\beta]\right)
+        &= P([\alpha * \beta])
+         = [\bar{\rho} * \alpha * \beta * \rho] \\[4pt]
+        &= [\bar{\rho} * \alpha * \rho * \bar{\rho} * \beta * \rho]
+    \end{align*}
+  \end{exampleblock}
+
+  \medskip
+  \textbf{Paso clave:} se inserta $\rho * \bar{\rho}$ (que es homotópico
+  al lazo constante $c_{x_0}$ por el Lema B) entre $\alpha$ y $\beta$.
+  El Lema C garantiza que podemos reasociar libremente, luego:
+  \[
+    = [\bar{\rho}*\alpha*\rho]\cdot[\bar{\rho}*\beta*\rho]
+    = P([\alpha])\cdot P([\beta]).
+  \]
+
+  \medskip
+  Por tanto $P$ es un homomorfismo de grupos. \hfill $\checkmark$
+
+\end{frame}
+
+\begin{frame}{El inverso $Q$ — $QP = \mathrm{id}$}
+
+  \begin{block}{Definición de $Q$}
+    \[
+      Q : \pione(X,x_1) \to \pione(X,x_0),
+      \qquad
+      Q([\sigma]) \;=\; [\rho * \sigma * \bar{\rho}].
+    \]
+  \end{block}
+
+  \medskip
+  \textbf{$QP = \mathrm{id}_{\pione(X,x_0)}$:} Sea $[\alpha] \in \pione(X,x_0)$.
+
+  \begin{align*}
+    QP([\alpha])
+      &= Q\!\left([\bar{\rho}*\alpha*\rho]\right) \\
+      &= [\rho * \bar{\rho} * \alpha * \rho * \bar{\rho}] \\
+      &= [\rho*\bar{\rho}] \cdot [\alpha] \cdot [\rho*\bar{\rho}].
+  \end{align*}
+
+  Por el Lema B, $\rho * \bar{\rho} \sim_{x_0} c_{x_0}$, y el lazo constante
+  es el elemento neutro, así:
+  \[
+    = [c_{x_0}] \cdot [\alpha] \cdot [c_{x_0}] \;=\; [\alpha]. \hfill \checkmark
+  \]
+
+\end{frame}
+
+\begin{frame}{$PQ = \mathrm{id}$ — Conclusión del isomorfismo}
+
+  \textbf{$PQ = \mathrm{id}_{\pione(X,x_1)}$:} Por simetría, intercambiamos
+  los papeles de $x_0$ y $x_1$ (y de $\rho$ con $\bar{\rho}$).
+  Sea $[\sigma] \in \pione(X,x_1)$:
+
+  \begin{align*}
+    PQ([\sigma])
+      &= P\!\left([\rho*\sigma*\bar{\rho}]\right) \\
+      &= [\bar{\rho}*\rho*\sigma*\bar{\rho}*\rho] \\
+      &= [\bar{\rho}*\rho] \cdot [\sigma] \cdot [\bar{\rho}*\rho].
+  \end{align*}
+
+  Ahora $\bar{\rho}*\rho \sim_{x_1} c_{x_1}$ por el Lema B, luego:
+  \[
+    = [c_{x_1}] \cdot [\sigma] \cdot [c_{x_1}] \;=\; [\sigma]. \hfill \checkmark
+  \]
+
+  \bigskip
+  \begin{block}{Conclusión}
+    $Q \circ P = \mathrm{id}$ y $P \circ Q = \mathrm{id}$, por lo que $P$
+    es biyectiva. Como además es homomorfismo:
+    \[
+      P : \pione(X, x_0) \;\xrightarrow{\;\cong\;}\; \pione(X, x_1).
+      \hfill \square
+    \]
+  \end{block}
+
+\end{frame}
+
+\begin{frame}{Observación sobre el punto base}
+
+  \begin{block}{Corolario}
+    Para un espacio arco-conexo $X$, todos los grupos $\pione(X,x)$
+    son isomorfos. Se puede hablar de \emph{el} grupo fundamental
+    $\pione(X)$ como grupo abstracto.
+  \end{block}
+
+  \bigskip
+  \begin{alertblock}{Advertencia: el isomorfismo no es único}
+    \begin{itemize}
+      \item Diferentes caminos $\rho$ de $x_0$ a $x_1$ producen, en general,
+            \textbf{diferentes isomorfismos} $P_\rho$.
+      \item $P_\rho$ y $P_{\rho'}$ difieren por un automorfismo interior de
+            $\pione(X,x_1)$ (conjugación por $[\bar{\rho}' * \rho]$).
+      \item Al comparar $\pione(X,x_0)$ con $\pione(Y,f(x_0))$ a través de
+            $f : X \to Y$, el punto base es \textbf{indispensable}.
+    \end{itemize}
+  \end{alertblock}
+
+\end{frame}

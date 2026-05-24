@@ -1,0 +1,229 @@
+% ============================================================
+\section{Espacios simplemente conexos — Teorema 4.4}
+% ============================================================
+
+\begin{frame}{Definición: Espacio simplemente conexo}
+
+  \begin{block}{Definición}
+    Un espacio \emph{arco-conexo} $X$ es \textbf{simplemente conexo}
+    si $\pione(X)$ es el grupo trivial.
+  \end{block}
+
+  \bigskip
+  \begin{itemize}
+    \item Recordemos que $\pione(X, \xo)$ es el \textbf{grupo fundamental}
+          de $X$ en el punto base $\xo$.
+    \item Cuando $X$ es arco-conexo, el grupo abstracto resultante no
+          depende de la elección de $\xo$, por lo que escribimos
+          simplemente $\pione(X)$.
+    \item Ser simplemente conexo significa que \emph{todo lazo} en $X$
+          basado en cualquier punto es homotópico al lazo constante.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Recordatorio: Espacio contráctil}
+
+  \begin{alertblock}{Definición (recordatorio)}
+    Un espacio topológico $X$ es \textbf{contráctil} si la aplicación
+    identidad $\mathrm{id}_X : X \to X$ es homotópica a una aplicación
+    constante; es decir, existe un punto $\xo \in X$ y una homotopía
+    \[
+      H : X \times I \;\longrightarrow\; X
+    \]
+    tal que
+    \[
+      H(x,\,0) = x \qquad \text{y} \qquad H(x,\,1) = \xo
+      \qquad \forall\, x \in X.
+    \]
+  \end{alertblock}
+
+  \bigskip
+  \textbf{Ejemplos:} $\R^n$, cualquier conjunto convexo, el cono sobre
+  un espacio compacto, etc.
+
+\end{frame}
+
+\begin{frame}{Teorema 4.4}
+
+  \begin{block}{Teorema 4.4}
+    Todo espacio contráctil es simplemente conexo.
+  \end{block}
+
+  \bigskip
+  \textbf{Estrategia de la demostración:}
+  \begin{enumerate}
+    \item Mostrar que $X$ es \textbf{arco-conexo}.
+    \item Construir, para cada lazo $\alpha$ en $X$ basado en $\xo$,
+          una homotopía $h : I \times I \to X$ que demuestre
+          $\clase{\alpha} = \clase{c}$, donde $c$ es el lazo constante.
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Demostración — Parte 1: Arco-conexidad}
+
+  Sea $X$ un espacio contráctil. Existe $\xo \in X$ y una homotopía
+  \[
+    H : X \times I \;\longrightarrow\; X
+    \quad \text{con} \quad
+    H(x,0) = x, \quad H(x,1) = \xo, \quad \forall\, x \in X.
+  \]
+
+  \medskip
+  \begin{block}{$X$ es arco-conexo}
+    Para cada $x \in X$, la función
+    \[
+      \alpha_x = H(x,\,\cdot\,) : I \;\longrightarrow\; X
+    \]
+    es un camino de $H(x,0) = x$ hasta $H(x,1) = \xo$.
+
+    \medskip
+    Dados $x, y \in X$ cualesquiera, el camino
+    $\alpha_x * \bar{\alpha}_y$ une $x$ con $y$.
+    Luego $X$ es arco-conexo. \hfill $\checkmark$
+  \end{block}
+
+\end{frame}
+
+\begin{frame}{Demostración — Parte 2: Caso $H(\xo, s) = \xo$}
+
+  Supongamos, por ahora, que $H$ satisface la propiedad adicional
+  \[
+    H(\xo,\, s) = \xo \qquad \forall\, s \in I.
+  \]
+
+  \medskip
+  Sea $\clase{\alpha} \in \pione(X, \xo)$.
+  Definimos la homotopía $h : I \times I \to X$ por
+  \[
+    h(t,\, s) \;=\; H\!\bigl(\alpha(t),\, s\bigr).
+  \]
+
+  \begin{exampleblock}{Verificación de $h$}
+    \begin{align*}
+      h(t,0) &= H(\alpha(t), 0) = \alpha(t), \\[4pt]
+      h(t,1) &= H(\alpha(t), 1) = \xo, \quad t \in I, \\[4pt]
+      h(0,s) &= H(\alpha(0),\, s) = H(\xo,\, s) = \xo, \\[4pt]
+      h(1,s) &= H(\alpha(1),\, s) = H(\xo,\, s) = \xo, \quad s \in I.
+    \end{align*}
+  \end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{Demostración — Parte 2: Conclusión}
+
+  La homotopía $h$ satisface:
+  \begin{itemize}
+    \item $h(\cdot, 0) = \alpha$ \quad (nivel inicial es el lazo $\alpha$),
+    \item $h(\cdot, 1) \equiv \xo$ \quad (nivel final es el lazo constante $c$),
+    \item $h(0, s) = h(1, s) = \xo$ para todo $s \in I$
+          \quad (los extremos permanecen fijos en $\xo$).
+  \end{itemize}
+
+  \bigskip
+  \begin{block}{Conclusión}
+    $h$ es una homotopía de lazos de $\alpha$ al lazo constante $c$. Por
+    tanto $\clase{\alpha} = \clase{c}$, y $\pione(X, \xo)$ contiene
+    únicamente el elemento identidad.
+
+    \medskip
+    Luego $X$ es \textbf{simplemente conexo}.
+  \end{block}
+
+\end{frame}
+
+\begin{frame}{Demostración — Parte 3: Caso general}
+
+  Si $H(\xo,\,\cdot\,) : I \to X$ \textbf{no} es el camino constante,
+  la homotopía $h(t,s) = H(\alpha(t),s)$ ya no tiene sus extremos fijos
+  en $\xo$.
+
+  \medskip
+  \textbf{Solución:} modificar cada nivel $s$ de $h$ para obtener
+  un lazo basado en $\xo$.
+
+  \medskip
+  Sea $\beta_s = H(\xo,\,\cdot\,)|_{[0,s]}$ el camino recorrido por
+  $\xo$ hasta el nivel $s$.
+  La homotopía corregida concatena $\beta_s$, el nivel $s$ de $h$, y
+  $\bar{\beta}_s$:
+  \[
+    \tilde{h}(\cdot,\, s) \;=\; \beta_s * h(\cdot,\, s) * \bar{\beta}_s.
+  \]
+  Esto produce un lazo basado en $\xo$ para cada $s$, con
+  $\tilde{h}(\cdot,0) = \alpha$ y $\tilde{h}(\cdot,1) = c$.
+
+  \medskip
+  La construcción explícita se ilustra en la Figura~4.5 del texto. \hfill $\square$
+
+\end{frame}
+
+\begin{frame}{Figura 4.5 — Ilustración de la homotopía corregida}
+
+  \begin{center}
+  \begin{tikzpicture}[scale=1.1]
+    % Espacio X (forma amorfa)
+    \draw[thick, fill=gray!15]
+      plot[smooth cycle, tension=0.7]
+      coordinates {(-2.5,0) (-2,1.5) (-0.5,2.2) (1.5,2) (2.5,0.8)
+                   (2,-1) (0,-1.8) (-1.5,-1.5)};
+
+    % Punto base x0
+    \filldraw[blue] (0,-0.8) circle (2pt) node[below, blue]
+      {\small $\xo$};
+
+    % Camino H(x0, .) desde x0
+    \draw[blue, thick, ->, >=Stealth]
+      (0,-0.8) .. controls (-0.3,0.2) and (-0.8,0.8) .. (-0.6,1.4)
+      node[left] {\small $H(\xo,\cdot)$};
+
+    % Punto H(x0, s) en el nivel intermedio
+    \filldraw[blue!70] (-0.6,1.4) circle (2pt)
+      node[above left, blue!80] {\small $H(\xo,s)$};
+
+    % Lazo h(·,s) en el nivel s
+    \draw[coralOscuro, thick]
+      (-0.6,1.4) .. controls (0.2,2.0) and (1.2,1.8) ..
+      (0.8,1.0) .. controls (0.4,0.4) and (-0.1,0.8) .. (-0.6,1.4);
+    \node[coralOscuro] at (0.6,1.7) {\small $h(\cdot,s)$};
+
+    % Indicación del nivel
+    \node at (2.0,1.8) {\small $X$};
+  \end{tikzpicture}
+  \end{center}
+
+  \vspace{-2mm}
+  \begin{itemize}
+    \item El camino $H(\xo,\cdot)$ (azul) puede no ser constante.
+    \item El lazo corregido $\tilde{h}(\cdot,s)$ recorre $\beta_s$,
+          el nivel $h(\cdot,s)$ (rojo), y regresa por $\bar{\beta}_s$.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Resumen — Teorema 4.4}
+
+  \begin{block}{Teorema 4.4 (reiteración)}
+    Todo espacio contráctil es simplemente conexo.
+  \end{block}
+
+  \bigskip
+  \textbf{Pasos clave de la demostración:}
+  \begin{enumerate}
+    \item La contracción $H$ proporciona caminos $\alpha_x = H(x,\cdot)$
+          que unen cada punto con $\xo$, probando la \textbf{arco-conexidad}.
+    \item Se define $h(t,s) = H(\alpha(t),s)$ para mostrar que cualquier
+          lazo $\alpha$ en $\xo$ es homotópico al lazo constante.
+    \item Si $H(\xo,\cdot)$ no es constante, se \textbf{corrige} $h$
+          concatenando el camino $H(\xo,\cdot)$ en cada nivel.
+    \item En ambos casos $\pione(X,\xo) = \{[c]\}$: el grupo trivial.
+  \end{enumerate}
+
+  \bigskip
+  \begin{exampleblock}{Corolario inmediato}
+    $\R^n$, los conjuntos convexos y todos los contráctiles tienen
+    grupo fundamental trivial.
+  \end{exampleblock}
+
+\end{frame}
