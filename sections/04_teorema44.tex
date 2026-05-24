@@ -2,7 +2,7 @@
 \section{Espacios simplemente conexos — Teorema 4.4}
 % ============================================================
 
-\begin{frame}{Definición: Espacio simplemente conexo}
+\begin{frame}{Teorema 4.4 — Espacio simplemente conexo}
 
   \begin{block}{Definición}
     Un espacio \emph{arco-conexo} $X$ es \textbf{simplemente conexo}
@@ -22,7 +22,7 @@
 
 \end{frame}
 
-\begin{frame}{Recordatorio: Espacio contráctil}
+\begin{frame}{Teorema 4.4 — Espacio contráctil}
 
   \begin{alertblock}{Definición (recordatorio)}
     Un espacio topológico $X$ es \textbf{contráctil} si la aplicación
@@ -44,7 +44,7 @@
 
 \end{frame}
 
-\begin{frame}{Teorema 4.4}
+\begin{frame}{Teorema 4.4 — Enunciado}
 
   \begin{block}{Teorema 4.4}
     Todo espacio contráctil es simplemente conexo.
@@ -95,9 +95,9 @@
 
   \medskip
   Sea $\clase{\alpha} \in \pione(X, \xo)$.
-  Definimos la homotopía $h : I \times I \to X$ por
+  Definimos la homotopía:
   \[
-    h(t,\, s) \;=\; H\!\bigl(\alpha(t),\, s\bigr).
+    \boxed{h(t,\, s) \;=\; H\!\bigl(\alpha(t),\, s\bigr)}
   \]
 
   \begin{exampleblock}{Verificación de $h$}
@@ -123,12 +123,12 @@
 
   \bigskip
   \begin{block}{Conclusión}
-    $h$ es una homotopía de lazos de $\alpha$ al lazo constante $c$. Por
-    tanto $\clase{\alpha} = \clase{c}$, y $\pione(X, \xo)$ contiene
+    $h$ es una homotopía de lazos de $\alpha$ al lazo constante $c$.
+    Por tanto $\clase{\alpha} = \clase{c}$, y $\pione(X, \xo)$ contiene
     únicamente el elemento identidad.
 
     \medskip
-    Luego $X$ es \textbf{simplemente conexo}.
+    Luego $X$ es \textbf{simplemente conexo}. \hfill $\checkmark$
   \end{block}
 
 \end{frame}
@@ -145,21 +145,23 @@
 
   \medskip
   Sea $\beta_s = H(\xo,\,\cdot\,)|_{[0,s]}$ el camino recorrido por
-  $\xo$ hasta el nivel $s$.
-  La homotopía corregida concatena $\beta_s$, el nivel $s$ de $h$, y
-  $\bar{\beta}_s$:
+  $\xo$ hasta el nivel $s$.  La homotopía corregida es:
   \[
-    \tilde{h}(\cdot,\, s) \;=\; \beta_s * h(\cdot,\, s) * \bar{\beta}_s.
+    \boxed{\tilde{h}(\cdot,\, s) \;=\; \beta_s * h(\cdot,\, s) * \bar{\beta}_s.}
   \]
   Esto produce un lazo basado en $\xo$ para cada $s$, con
   $\tilde{h}(\cdot,0) = \alpha$ y $\tilde{h}(\cdot,1) = c$.
 
-  \medskip
-  La construcción explícita se ilustra en la Figura~4.5 del texto. \hfill $\square$
+  \bigskip
+  \begin{block}{Conclusión}
+    En ambos casos, $\clase{\alpha} = \clase{c}$ para todo lazo $\alpha$
+    en $\xo$, luego $\pione(X,\xo) = \{\clase{c}\}$: el grupo trivial.
+    \hfill $\square$
+  \end{block}
 
 \end{frame}
 
-\begin{frame}{Figura 4.5 — Ilustración de la homotopía corregida}
+\begin{frame}{Teorema 4.4 — Ilustración (Figura 4.5)}
 
   \begin{center}
   \begin{tikzpicture}[scale=1.1]
@@ -170,39 +172,41 @@
                    (2,-1) (0,-1.8) (-1.5,-1.5)};
 
     % Punto base x0
-    \filldraw[blue] (0,-0.8) circle (2pt) node[below, blue]
+    \filldraw[morado] (0,-0.8) circle (2pt) node[below, morado]
       {\small $\xo$};
 
-    % Camino H(x0, .) desde x0
-    \draw[blue, thick, ->, >=Stealth]
-      (0,-0.8) .. controls (-0.3,0.2) and (-0.8,0.8) .. (-0.6,1.4)
-      node[left] {\small $H(\xo,\cdot)$};
+    % Camino H(x0, .) desde x0  (su restriccion a [0,s] es beta_s)
+    \draw[morado, thick, ->, >=Stealth]
+      (0,-0.8) .. controls (-0.3,0.2) and (-0.8,0.8) .. (-0.6,1.4);
+    \node[morado] at (-1.25,0.0) {\small $H(\xo,\cdot)$};
+    \node[morado] at (0.02,0.45) {\small $\beta_s$};
 
     % Punto H(x0, s) en el nivel intermedio
-    \filldraw[blue!70] (-0.6,1.4) circle (2pt)
-      node[above left, blue!80] {\small $H(\xo,s)$};
+    \filldraw[morado!70] (-0.6,1.4) circle (2pt);
+    \node[morado!80, left=3pt] at (-0.6,1.4) {\small $H(\xo,s)$};
 
     % Lazo h(·,s) en el nivel s
     \draw[coralOscuro, thick]
-      (-0.6,1.4) .. controls (0.2,2.0) and (1.2,1.8) ..
-      (0.8,1.0) .. controls (0.4,0.4) and (-0.1,0.8) .. (-0.6,1.4);
-    \node[coralOscuro] at (0.6,1.7) {\small $h(\cdot,s)$};
+      (-0.6,1.4) .. controls (0.4,2.1) and (1.5,1.7) ..
+      (1.0,1.0) .. controls (0.6,0.4) and (0.0,0.8) .. (-0.6,1.4);
+    \node[coralOscuro] at (1.15,1.75) {\small $h(\cdot,s)$};
 
-    % Indicación del nivel
-    \node at (2.0,1.8) {\small $X$};
+    \node at (2.1,1.7) {\small $X$};
   \end{tikzpicture}
   \end{center}
 
   \vspace{-2mm}
   \begin{itemize}
-    \item El camino $H(\xo,\cdot)$ (azul) puede no ser constante.
+    \item El camino $H(\xo,\cdot)$ (\textcolor{morado}{azul}) puede no
+          ser constante.
     \item El lazo corregido $\tilde{h}(\cdot,s)$ recorre $\beta_s$,
-          el nivel $h(\cdot,s)$ (rojo), y regresa por $\bar{\beta}_s$.
+          el nivel $h(\cdot,s)$ (\textcolor{coralOscuro}{rojo}),
+          y regresa por $\bar{\beta}_s$.
   \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Resumen — Teorema 4.4}
+\begin{frame}{Teorema 4.4 — Resumen}
 
   \begin{block}{Teorema 4.4 (reiteración)}
     Todo espacio contráctil es simplemente conexo.
@@ -217,7 +221,7 @@
           lazo $\alpha$ en $\xo$ es homotópico al lazo constante.
     \item Si $H(\xo,\cdot)$ no es constante, se \textbf{corrige} $h$
           concatenando el camino $H(\xo,\cdot)$ en cada nivel.
-    \item En ambos casos $\pione(X,\xo) = \{[c]\}$: el grupo trivial.
+    \item En ambos casos $\pione(X,\xo) = \{\clase{c}\}$: el grupo trivial.
   \end{enumerate}
 
   \bigskip

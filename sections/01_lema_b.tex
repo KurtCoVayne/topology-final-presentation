@@ -113,61 +113,57 @@
       \end{align*}
       Coinciden $\Rightarrow$ Lema de Continuidad con
       $A=[0,\tfrac{1}{2}]\times I$,
-      $B=[\tfrac{1}{2},1]\times I$. \checkmark
+      $B=[\tfrac{1}{2},1]\times I$. $\checkmark$
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Lema B — Visualización geométrica en $\IxI$}
   \begin{center}
-  \begin{tikzpicture}[scale=2.2]
-    % Cuadrado unitario
+  \begin{tikzpicture}[scale=4.5]
+    % Mitad izquierda (ida) / derecha (vuelta)
+    \fill[moradoclaro!50] (0,0) rectangle (0.5,1);
+    \fill[verdeTeal!25]   (0.5,0) rectangle (1,1);
     \draw[thick] (0,0) rectangle (1,1);
 
-    % Región izquierda (subida por alpha)
-    \fill[moradoclaro!50] (0,0) -- (0.5,1) -- (0,1) -- cycle;
-    % Región derecha (bajada por alpha-bar)
-    \fill[verdeTeal!25] (0.5,1) -- (1,1) -- (1,0) -- (0,0) -- cycle;
-
-    % Diagonal L: t = s/2  (frontera entre las dos piezas al nivel s)
-    % En realidad la frontera es t=1/2 para todo s, pero la "exploración"
-    % está dada por la diagonal del cuadrado.
-    % Dibujamos la evolución del nivel s
-    \foreach \s/\col in {0.25/moradoclaro, 0.5/morado, 0.75/verdeTeal}{
-      \draw[\col, thick, dashed]
-        (0,\s) -- (0.5*\s, \s)
-        -- ({0.5*\s+0.5*(1-\s)}, \s);
-    }
-
-    % Línea divisoria t=1/2
+    % Divisoria vertical t=1/2
     \draw[ambar, very thick] (0.5,0) -- (0.5,1);
-    \node[ambar, below] at (0.5,-0.05) {\small $t=\tfrac{1}{2}$};
 
-    % Labels en el cuadrado
-    \node[morado] at (0.17, 0.65) {\small $\alpha(2ts)$};
-    \node[verdeTeal] at (0.78, 0.4) {\small $\alpha(2s{-}2ts)$};
+    % Descriptores de cada mitad (arriba, despejados del centro)
+    \node[morado]    at (0.25, 0.86) {\small ida};
+    \node[verdeTeal] at (0.75, 0.86) {\small vuelta};
 
-    % Etiquetas bordes
+    % Fórmula de cada pieza (abajo, fuente pequeña, sin cruzar la divisoria)
+    \node[morado]    at (0.25, 0.14) {\tiny $\alpha(2ts)$};
+    \node[verdeTeal] at (0.75, 0.14) {\tiny $\alpha(2s{-}2ts)$};
+
+    % Nivel representativo s = s0: sale hasta alpha(s0) y regresa
+    \def\so{0.5}
+    \draw[coralOscuro, thick, dashed] (0,\so) -- (1,\so);
+    \draw[coralOscuro, -Stealth, thick] (0.06,\so) -- (0.44,\so);
+    \draw[coralOscuro, -Stealth, thick] (0.94,\so) -- (0.56,\so);
+    \fill[coralOscuro] (0.5,\so) circle (1.2pt);
+    \node[coralOscuro, above=1pt] at (0.5,\so) {\tiny llega a $\alpha(s_0)$};
+    \node[right, coralOscuro] at (1.04,\so) {\small nivel $s=s_0$};
+
+    % s=0 / s=1 callouts
+    \node[right, coralOscuro] at (1.04, 0) {\small $s=0$: lazo constante $c$};
+    \node[right, coralOscuro] at (1.04, 1) {\small $s=1$: $\alpha*\abar$};
+
+    % Etiquetas de ejes (bien separadas de los títulos)
     \node[below] at (0,-0.05) {\small $0$};
     \node[below] at (1,-0.05) {\small $1$};
-    \node[left]  at (-0.05,0) {\small $0$};
-    \node[left]  at (-0.05,1) {\small $1$};
-    \node[below] at (0.5,-0.15) {};
-    \node[rotate=90, left] at (-0.15, 0.5) {\small $s$ (deformación)};
+    \node[ambar, below] at (0.5,-0.05) {\small $\tfrac{1}{2}$};
     \node[below] at (0.5,-0.22) {\small $t$ (parámetro del lazo)};
+    \node[left]  at (-0.04,0) {\small $0$};
+    \node[left]  at (-0.04,1) {\small $1$};
+    \node[rotate=90] at (-0.24, 0.5) {\small $s$ (deformación)};
 
-    % s=0: lazo constante
-    \node[right, coralOscuro] at (1.05, 0) {\small $s=0$: lazo constante $c$};
-    % s=1: alpha * alpha-bar
-    \node[right, coralOscuro] at (1.05, 1) {\small $s=1$: $\alpha*\abar$};
-
-    % Puntos base en los bordes verticales
-    \fill[ambar] (0,0) circle (1.2pt);
-    \fill[ambar] (0,1) circle (1.2pt);
-    \fill[ambar] (1,0) circle (1.2pt);
-    \fill[ambar] (1,1) circle (1.2pt);
-    \node[left, ambar] at (0,0.5) {\tiny $\xo$};
-    \node[right, ambar] at (1,0.5) {\tiny $\xo$};
+    % Puntos base en los bordes verticales (t=0,1 \mapsto x0)
+    \fill[ambar] (0,0) circle (1.0pt);
+    \fill[ambar] (0,1) circle (1.0pt);
+    \fill[ambar] (1,0) circle (1.0pt);
+    \fill[ambar] (1,1) circle (1.0pt);
   \end{tikzpicture}
   \end{center}
 \end{frame}
@@ -193,7 +189,7 @@
     = \clase{c}
   \]
 
-  \begin{block}{Resultado}
+  \begin{block}{Conclusión}
     $\clase{\abar} = \clase{\alpha}^{-1}$ es un \textbf{inverso bilateral} de
     $\clase{\alpha}$ en $\pione(X,\xo)$. \hfill $\square$
   \end{block}

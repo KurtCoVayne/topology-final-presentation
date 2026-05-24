@@ -129,58 +129,51 @@
 
 \begin{frame}{Lema C — Visualización: los puntos de corte se deslizan}
   \begin{center}
-  \begin{tikzpicture}[scale=3.0]
+  \begin{tikzpicture}[scale=4.5]
+    % Tres regiones delimitadas por las dos diagonales de corte
+    % Corte izq:  t=(s+1)/4  -> de (1/4,0) a (1/2,1)
+    % Corte der:  t=(s+2)/4  -> de (1/2,0) a (3/4,1)
+    \fill[moradoclaro!40] (0,0) -- (0.25,0) -- (0.5,1) -- (0,1) -- cycle;
+    \fill[verdeTeal!25]   (0.25,0) -- (0.5,0) -- (0.75,1) -- (0.5,1) -- cycle;
+    \fill[coralOscuro!20] (0.5,0) -- (1,0) -- (1,1) -- (0.75,1) -- cycle;
+
     \draw[thick] (0,0) rectangle (1,1);
 
-    % Regiones coloreadas para s=0 (base)
-    \fill[moradoclaro!40] (0,0) rectangle (0.25, 0.01);
-    \fill[verdeTeal!30]   (0.25,0) rectangle (0.5, 0.01);
-    \fill[coralOscuro!20] (0.5,0) rectangle (1, 0.01);
+    % Diagonales de los puntos de corte
+    \draw[morado, thick, dashed]    (0.25, 0) -- (0.5, 1);
+    \draw[verdeTeal, thick, dashed] (0.5, 0) -- (0.75, 1);
 
-    % Líneas de corte para distintos valores de s
-    % s=0: cortes en 1/4 y 1/2
-    \draw[morado, thick]     (0.25, 0) -- (0.25, 0.01)
-      node[below=2pt]{\tiny $\frac{1}{4}$};
-    \draw[verdeTeal, thick]  (0.5,  0) -- (0.5,  0.01)
-      node[below=2pt]{\tiny $\frac{1}{2}$};
+    % Etiquetas de regiones (centroides)
+    \node[morado]      at (0.12, 0.5) {\small $\alpha$};
+    \node[verdeTeal]   at (0.50, 0.5) {\small $\beta$};
+    \node[coralOscuro] at (0.86, 0.5) {\small $\gamma$};
 
-    % Líneas diagonales de los puntos de corte
-    % Corte izq: t=(s+1)/4  -> de (1/4,0) a (1/2,1)
-    \draw[morado, very thick, dashed]
-      (0.25, 0) -- (0.5, 1)
-      node[right]{\small $\dfrac{s+1}{4}$};
-
-    % Corte der: t=(s+2)/4  -> de (1/2,0) a (3/4,1)
-    \draw[verdeTeal, very thick, dashed]
-      (0.5, 0) -- (0.75, 1)
-      node[right]{\small $\dfrac{s+2}{4}$};
-
-    % Regiones
-    \node[morado]     at (0.13, 0.5) {\small $\alpha$};
-    \node[verdeTeal]  at (0.48, 0.5) {\small $\beta$};
-    \node[coralOscuro] at (0.83, 0.5) {\small $\gamma$};
+    % Cortes en s=0 (abajo) y s=1 (arriba): muestran el deslizamiento
+    \node[below, morado]    at (0.25,-0.04) {\tiny $\tfrac{1}{4}$};
+    \node[below, verdeTeal] at (0.5,-0.04)  {\tiny $\tfrac{1}{2}$};
+    \node[above, morado]    at (0.5,1.03)  {\tiny $\tfrac{1}{2}$};
+    \node[above, verdeTeal] at (0.75,1.03) {\tiny $\tfrac{3}{4}$};
 
     % Etiquetas ejes
-    \node[below] at (0,-0.07) {\small $0$};
-    \node[below] at (1,-0.07) {\small $1$};
-    \node[left]  at (-0.04,0) {\small $s=0$};
-    \node[left]  at (-0.04,1) {\small $s=1$};
-
-    % Cortes en s=1
-    \draw[morado!50]    (0.5, 1) -- (0.5,1.01)
-      node[above]{\tiny $\frac{1}{2}$};
-    \draw[verdeTeal!50] (0.75,1) -- (0.75,1.01)
-      node[above]{\tiny $\frac{3}{4}$};
-
-    % Flecha s
-    \draw[-Stealth, thick] (-0.08, 0) -- (-0.08, 1)
+    \node[below] at (0,-0.04) {\small $0$};
+    \node[below] at (1,-0.04) {\small $1$};
+    \node[left]  at (-0.1,0) {\small $s=0$};
+    \node[left]  at (-0.1,1) {\small $s=1$};
+    \draw[-Stealth, thick] (-0.18, 0) -- (-0.18, 1)
       node[midway, left]{\small $s$};
+    \node[below] at (0.5,-0.18) {\small $t$};
+
+    % Leyenda de los cortes (a la derecha, sin cargar el interior)
+    \draw[morado, thick, dashed]    (1.12,0.62) -- (1.30,0.62);
+    \node[right, morado]    at (1.32,0.62) {\footnotesize corte 1: $t=\dfrac{s+1}{4}$};
+    \draw[verdeTeal, thick, dashed] (1.12,0.38) -- (1.30,0.38);
+    \node[right, verdeTeal] at (1.32,0.38) {\footnotesize corte 2: $t=\dfrac{s+2}{4}$};
   \end{tikzpicture}
   \end{center}
 \end{frame}
 
 \begin{frame}{Lema C — Conclusión}
-  \begin{block}{Resultado}
+  \begin{block}{Conclusión}
     $K$ es una homotopía módulo $\xo$ entre $(\alpha*\beta)*\gamma$ y
     $\alpha*(\beta*\gamma)$, luego:
     \[

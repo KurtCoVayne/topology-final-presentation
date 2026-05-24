@@ -38,10 +38,22 @@
 % ============================================================
 %  Tema y colores (plantilla main-udea)
 % ============================================================
-\usetheme{default}                                   % tema simple y limpio
-\setbeamercolor{frametitle}{fg=blue}                 % títulos de slide en azul
-\setbeamercolor{structure}{fg=blue}                  % viñetas, toc, etc.
-\setbeamercolor{title in head/foot}{fg=blue}
+
+% ---------- Paleta de colores ----------
+% Los dos morados estructurales se re-mapean al azul de la plantilla;
+% los acentos (verde/coral/ámbar) se mantienen para armonizar con el azul.
+\definecolor{morado}{HTML}{1A73E8}        % azul de plantilla (antes púrpura)
+\definecolor{moradoclaro}{HTML}{CCE5FF}   % azul claro
+\definecolor{verdeTeal}{RGB}{15,110,86}
+\definecolor{verdeClaro}{RGB}{225,245,238}
+\definecolor{coralOscuro}{RGB}{153,60,29}
+\definecolor{ambar}{RGB}{133,79,11}
+\definecolor{grisClaro}{RGB}{245,244,240}
+
+\usetheme{default}                                        % tema simple y limpio
+\setbeamercolor{frametitle}{fg=morado}                    % títulos de slide
+\setbeamercolor{structure}{fg=morado}                     % viñetas, toc, etc.
+\setbeamercolor{title in head/foot}{fg=morado}
 \setbeamercolor{date in head/foot}{fg=black}
 
 % Pie de página con número de slide (plantilla main-udea)
@@ -52,18 +64,6 @@
     \hspace{1em}%
     \insertframenumber/\inserttotalframenumber
 }
-
-% ---------- Paleta de colores ----------
-% Se conservan los NOMBRES usados por las figuras del contenido, pero los dos
-% morados estructurales se re-mapean a los azules de la plantilla; los acentos
-% (verde/coral/ámbar) se mantienen para armonizar con el azul.
-\definecolor{morado}{HTML}{1A73E8}        % antes púrpura -> azul de plantilla
-\definecolor{moradoclaro}{HTML}{CCE5FF}   % azul claro
-\definecolor{verdeTeal}{RGB}{15,110,86}
-\definecolor{verdeClaro}{RGB}{225,245,238}
-\definecolor{coralOscuro}{RGB}{153,60,29}
-\definecolor{ambar}{RGB}{133,79,11}
-\definecolor{grisClaro}{RGB}{245,244,240}
 
 % ---------- Colores de bloques ----------
 \setbeamercolor{block title}{bg=morado, fg=white}
