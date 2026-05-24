@@ -99,34 +99,32 @@
 \begin{frame}{Lema C — Verificación de la homotopía}
   \textbf{Punto base fijo:}
   \begin{align*}
-    K(0,s) &= \alpha\!\left(\frac{0}{s+1}\right) = \alpha(0) = \xo \checkmark\\
-    K(1,s) &= \gamma\!\left(\frac{4-s-2}{2-s}\right)
-             = \gamma\!\left(\frac{2-s}{2-s}\right)
-             = \gamma(1) = \xo \checkmark
+    K(0,s) &= \alpha\!\left(\tfrac{0}{s+1}\right) = \alpha(0) = \xo \checkmark\\
+    K(1,s) &= \gamma\!\left(\tfrac{4-s-2}{2-s}\right) = \gamma\!\left(\tfrac{2-s}{2-s}\right) = \gamma(1) = \xo \checkmark
   \end{align*}
 
-  \medskip
-  \textbf{Continuidad en $t = \dfrac{s+1}{4}$ (frontera entre $\alpha$ y $\beta$):}
-  \[
-    \text{pieza 1: }\alpha\!\left(\frac{4\cdot\frac{s+1}{4}}{s+1}\right)
-                 = \alpha(1) = \xo
-    \qquad
-    \text{pieza 2: }\beta\!\left(4\cdot\frac{s+1}{4} - 1 - s\right)
-                 = \beta(0) = \xo \checkmark
-  \]
+  \smallskip
+  \textbf{Continuidad en las fronteras (Lema de Continuidad):}
 
-  \medskip
-  \textbf{Continuidad en $t = \dfrac{s+2}{4}$ (frontera entre $\beta$ y $\gamma$):}
-  \[
-    \text{pieza 2: }\beta\!\left(4\cdot\frac{s+2}{4}-1-s\right)
-                 = \beta(1) = \xo
-    \qquad
-    \text{pieza 3: }\gamma\!\left(\frac{4\cdot\frac{s+2}{4}-s-2}{2-s}\right)
-                 = \gamma(0) = \xo \checkmark
-  \]
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \small $t = \tfrac{s+1}{4}$ \;(frontera $\alpha$/$\beta$):
+      \begin{align*}
+        \text{p.1: }&\alpha\!\left(\tfrac{s+1}{s+1}\right) = \alpha(1) = \xo \\
+        \text{p.2: }&\beta(s+1-1-s) = \beta(0) = \xo \;\checkmark
+      \end{align*}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \small $t = \tfrac{s+2}{4}$ \;(frontera $\beta$/$\gamma$):
+      \begin{align*}
+        \text{p.2: }&\beta(s+2-1-s) = \beta(1) = \xo \\
+        \text{p.3: }&\gamma\!\left(\tfrac{s+2-s-2}{2-s}\right) = \gamma(0) = \xo \;\checkmark
+      \end{align*}
+    \end{column}
+  \end{columns}
 
-  Las tres piezas son continuas y coinciden en las fronteras.
-  Por el \textbf{Lema de Continuidad} (aplicado dos veces), $K$ es continua.
+  \smallskip
+  Las tres piezas son continuas y coinciden en las fronteras $\Rightarrow$ $K$ es continua.
 \end{frame}
 
 \begin{frame}{Lema C — Visualización: los puntos de corte se deslizan}

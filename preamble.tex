@@ -22,6 +22,10 @@
 \usepackage{ragged2e}   % \justifying
 \usepackage{hyperref}
 \usepackage{minted}
+\usepackage{csquotes}   % must come after fvextra (loaded by minted)
+
+% Suppress \\ in PDF author/title strings
+\pdfstringdefDisableCommands{\let\\=\space}
 
 % ---------- TikZ ----------
 \usepackage{tikz}
