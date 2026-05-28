@@ -2,6 +2,82 @@
 \section{Teorema 4.3 — Independencia del punto base}
 % ============================================================
 
+\begin{frame}{La hipótesis clave: espacios arco-conexos}
+
+  \begin{block}{Definición — espacio arco-conexo}
+    $X$ es \textbf{arco-conexo} (o \emph{conexo por caminos}) si para
+    \textbf{cualquier} par de puntos $a, b \in X$ existe un camino continuo
+    \[
+      \rho : \I \to X, \qquad \rho(0) = a, \quad \rho(1) = b.
+    \]
+  \end{block}
+
+  \smallskip
+  \begin{center}
+  \small
+  \begin{tabular}{ccc}
+    % ---------- (1) Arco-conexo ----------
+    \begin{tikzpicture}[scale=0.72, >=Stealth]
+      \draw[thick, fill=verdeClaro]
+        plot[smooth cycle, tension=0.7]
+        coordinates {(-1.8,0.1) (-1.2,1.2) (0,1.6) (1.3,1.2) (1.8,0.0)
+                     (1.3,-1.2) (0,-1.5) (-1.3,-1.1)};
+      \draw[verdeTeal, very thick, ->]
+        (-1.0,-0.5) .. controls (-0.3,0.5) and (0.5,-0.4) .. (1.1,0.5);
+      \filldraw[verdeTeal] (-1.0,-0.5) circle (1.8pt) node[below left]{\scriptsize $a$};
+      \filldraw[verdeTeal] (1.1,0.5)  circle (1.8pt) node[above right]{\scriptsize $b$};
+    \end{tikzpicture}
+    &
+    % ---------- (2) NO arco-conexo ----------
+    \begin{tikzpicture}[scale=0.72, >=Stealth]
+      \draw[thick, fill=grisClaro]
+        plot[smooth cycle, tension=0.7]
+        coordinates {(-2.1,0.1) (-1.7,1.1) (-1.0,1.3) (-0.6,0.0)
+                     (-1.0,-1.2) (-1.8,-1.0)};
+      \draw[thick, fill=grisClaro]
+        plot[smooth cycle, tension=0.7]
+        coordinates {(0.6,0.0) (1.0,1.3) (1.7,1.1) (2.1,0.1)
+                     (1.8,-1.0) (1.0,-1.2)};
+      \filldraw[coralOscuro] (-1.3,-0.2) circle (1.8pt) node[below]{\scriptsize $a$};
+      \filldraw[coralOscuro] (1.3,-0.2)  circle (1.8pt) node[below]{\scriptsize $b$};
+      \draw[coralOscuro, very thick, dashed] (-1.3,-0.2) -- (1.3,-0.2);
+      \node[coralOscuro] at (0,0.55) {\large $\times$};
+    \end{tikzpicture}
+    &
+    % ---------- (3) Parece que no, pero sí ----------
+    \begin{tikzpicture}[scale=0.72, >=Stealth]
+      \begin{scope}
+        \clip (0,0) circle (1.7);
+        \fill[moradoclaro!60] (0,0) circle (1.7);
+        \fill[white] (0,0) circle (0.75);
+      \end{scope}
+      \draw[thick] (0,0) circle (1.7);
+      \draw[thick] (0,0) circle (0.75);
+      \draw[morado, very thick, ->]
+        (-1.25,0) .. controls (-1.2,1.25) and (1.2,1.25) .. (1.25,0);
+      \filldraw[morado] (-1.25,0) circle (1.8pt) node[left]{\scriptsize $a$};
+      \filldraw[morado] (1.25,0)  circle (1.8pt) node[right]{\scriptsize $b$};
+    \end{tikzpicture}
+    \\[2pt]
+    \textcolor{verdeTeal}{\textbf{Sí} arco-conexo}
+    &
+    \textcolor{coralOscuro}{\textbf{No} arco-conexo}
+    &
+    \textcolor{morado}{\textbf{Parece que no, pero sí}}
+    \\[1pt]
+    {\scriptsize todo par se une} &
+    {\scriptsize dos ``islas'' separadas} &
+    {\scriptsize se rodea el agujero}
+  \end{tabular}
+  \end{center}
+
+  \smallskip
+  {\footnotesize \textbf{Por qué importa:} toda la prueba descansa en un único
+  camino $\rho$ de $\xo$ a $x_1$. Si $X$ no fuera arco-conexo y $\xo, x_1$
+  vivieran en componentes distintas, \emph{ese camino no existiría}.}
+
+\end{frame}
+
 \begin{frame}{Teorema 4.3 — Enunciado}
 
   \begin{block}{Teorema 4.3}
